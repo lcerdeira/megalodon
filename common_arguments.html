@@ -1,0 +1,399 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Common Arguments &mdash; Megalodon 2.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced Megalodon Arguments" href="advanced_arguments.html" />
+    <link rel="prev" title="Megalodon Algorithm Details" href="algorithm_details.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Megalodon
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="algorithm_details.html">Megalodon Algorithm Details</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Common Arguments</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#required-argument">Required Argument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#guppy-backend-argument">Guppy Backend Argument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-arguments">Output Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-arguments">Mapping Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sequence-variant-arguments">Sequence Variant Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modified-base-arguments">Modified Base Arguments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#miscellaneous-arguments">Miscellaneous Arguments</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_arguments.html">Advanced Megalodon Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computing_considerations.html">Computing Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variant_phasing.html">Variant Phasing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_formats.html">File Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_training.html">Megalodon Model Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modbase_training.html">Megalodon Modified Base Model Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_aggregate.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">aggregate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_calibrate.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">calibrate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_merge.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">merge</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_modified_bases.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">modified_bases</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_phase_variants.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">phase_variants</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_per_read_text.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">per_read_text</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_validate.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">validate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_variants.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">variants</span></code></a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Megalodon</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Common Arguments</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/common_arguments.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="common-arguments">
+<h1>Common Arguments<a class="headerlink" href="#common-arguments" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="required-argument">
+<h2>Required Argument<a class="headerlink" href="#required-argument" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fast5s_dir</span></code></p>
+<ul>
+<li><p>Path to directory containing raw FAST5-format nanopore reads.</p></li>
+<li><p>Both single and multi FAST5 formats are supported.</p></li>
+<li><p>Default searches recursively for fast5 read files. To search only one-level specify <cite>–not-recursive</cite>.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="guppy-backend-argument">
+<h2>Guppy Backend Argument<a class="headerlink" href="#guppy-backend-argument" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--guppy-config</span></code></p>
+<ul>
+<li><p>Guppy config.</p></li>
+<li><p>Default: <code class="docutils literal notranslate"><span class="pre">dna_r9.4.1_450bps_modbases_dam-dcm-cpg_hac.cfg</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--guppy-server-path</span></code></p>
+<ul>
+<li><p>Path to guppy server executable.</p></li>
+<li><p>Default: <code class="docutils literal notranslate"><span class="pre">./ont-guppy/bin/guppy_basecall_server</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="output-arguments">
+<h2>Output Arguments<a class="headerlink" href="#output-arguments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--outputs</span></code></p>
+<ul>
+<li><p>Specify desired outputs.</p></li>
+<li><p>Options are <code class="docutils literal notranslate"><span class="pre">basecalls</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_basecalls</span></code>, <code class="docutils literal notranslate"><span class="pre">mappings</span></code>, <code class="docutils literal notranslate"><span class="pre">variant_mappings</span></code>, <code class="docutils literal notranslate"><span class="pre">mod_mappings</span></code>, <code class="docutils literal notranslate"><span class="pre">per_read_variants</span></code>, <code class="docutils literal notranslate"><span class="pre">per_read_mods</span></code>, <code class="docutils literal notranslate"><span class="pre">variants</span></code>, and <code class="docutils literal notranslate"><span class="pre">mods</span></code>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">mod_basecalls</span></code> are currently output in an HDF5 file with a data set corresponding to each read (accessed via the <code class="docutils literal notranslate"><span class="pre">read_id</span></code>).</p>
+<ul>
+<li><p>This format is likely to change in the future.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">variant_mappings</span></code> are intended only for obtaining highly accurate phased variant genotypes.</p>
+<ul>
+<li><p>These mappings contain reference sequence at all positions except for per-read called variants. The base quality scores encode the likelihood for that reference anchored variant for use in the whathap phasing algorithm.</p></li>
+<li><p>This file is useful for visualizing per-read variant calls as well as potential variant phasing.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mod_mappings</span></code> provide reference-anchored per-read modified base calls.</p>
+<ul>
+<li><p>These mappings contain the mapped reference sequence annotated with modified base calls at all instances of <a href="#id1"><span class="problematic" id="id2">``</span></a>–mod-motif``s.</p></li>
+<li><p>This file is useful for visualizing per-read modified base calls (e.g. IGV bisulfite mode for CpG calls).</p></li>
+<li><p>This file may also allow a port to standard bisulfite pipelines that are capable of processing long-reads.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Default output is basecalls only.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--output-directory</span></code></p>
+<ul>
+<li><p>Specify the directory to output results.
+Default <code class="docutils literal notranslate"><span class="pre">megalodon_results</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--overwrite</span></code></p>
+<ul>
+<li><p>Overwrite the <code class="docutils literal notranslate"><span class="pre">--output-directory</span></code> if it exists.</p></li>
+<li><p>Note that this is a recursive file deletion and should be used with caution.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="mapping-arguments">
+<h2>Mapping Arguments<a class="headerlink" href="#mapping-arguments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--mappings-format</span></code></p>
+<ul>
+<li><p>Format for <code class="docutils literal notranslate"><span class="pre">mapping</span></code> output.</p></li>
+<li><p>Options include <code class="docutils literal notranslate"><span class="pre">bam</span></code> (default), <code class="docutils literal notranslate"><span class="pre">cram</span></code>, and <code class="docutils literal notranslate"><span class="pre">sam</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--reference</span></code></p>
+<ul>
+<li><p>Reference genome or transcriptome in FASTA format.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="sequence-variant-arguments">
+<h2>Sequence Variant Arguments<a class="headerlink" href="#sequence-variant-arguments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--haploid</span></code></p>
+<ul>
+<li><p>Compute sequence variants assuming a haploid reference. Default: diploid</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--variant-filename</span></code></p>
+<ul>
+<li><p>File containing putative variants in VCF/BCF format.</p>
+<ul>
+<li><p>Variants file must be sorted.</p></li>
+<li><p>If variant file is not compressed and indexed this will be performed before further processing.</p></li>
+</ul>
+</li>
+<li><p>Variants must be matched to the <code class="docutils literal notranslate"><span class="pre">--reference</span></code> provided.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--variant-calibration-filename</span></code></p>
+<ul>
+<li><p>File containing empirical calibration for sequence variant scores.</p></li>
+<li><p>As created by the <code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">calibrate</span> <span class="pre">variants</span></code> command.</p></li>
+<li><p>Default: Load default calibration file for guppy config.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="modified-base-arguments">
+<h2>Modified Base Arguments<a class="headerlink" href="#modified-base-arguments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--mod-motif</span></code></p>
+<ul>
+<li><p>Restrict modified base results to the specified motifs.</p></li>
+<li><p>If not provided (and <code class="docutils literal notranslate"><span class="pre">per_read_mods</span></code> or <code class="docutils literal notranslate"><span class="pre">mods</span></code> outputs requested) all relevant sites are tested (e.g. all <code class="docutils literal notranslate"><span class="pre">C</span></code> bases for <code class="docutils literal notranslate"><span class="pre">5mC</span></code>).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mod-calibration-filename</span></code></p>
+<ul>
+<li><p>File containing empirical calibration for modified base scores.</p></li>
+<li><p>As created by <code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">calibrate</span> <span class="pre">modified_bases</span></code> command.</p></li>
+<li><p>Default: Load default calibration file for guppy config.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="miscellaneous-arguments">
+<h2>Miscellaneous Arguments<a class="headerlink" href="#miscellaneous-arguments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--processes</span></code></p>
+<ul>
+<li><p>Number of CPU read-processing workers to spawn.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--devices</span></code></p>
+<ul>
+<li><p>GPU devices to use for basecalling acceleration.</p></li>
+<li><p>If not provided CPU basecalling will be performed.</p></li>
+<li><p>Device names can be provided in the following formats: <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">cuda0</span></code> or <code class="docutils literal notranslate"><span class="pre">cuda:0</span></code>.</p></li>
+<li><p>Multiple devices can be specified separated by a space.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--verbose-read-progress</span></code></p>
+<ul>
+<li><p>Output dynamic updates to potential issues during processing.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="advanced_arguments.html" class="btn btn-neutral float-right" title="Advanced Megalodon Arguments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="algorithm_details.html" class="btn btn-neutral float-left" title="Megalodon Algorithm Details" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Oxford Nanopore Technologies
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

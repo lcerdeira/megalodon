@@ -1,0 +1,338 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Megalodon Modified Base Model Training &mdash; Megalodon 2.1.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="megalodon_extras aggregate" href="extras_aggregate.html" />
+    <link rel="prev" title="Megalodon Model Training" href="model_training.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Megalodon
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                2.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="algorithm_details.html">Megalodon Algorithm Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="common_arguments.html">Common Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_arguments.html">Advanced Megalodon Arguments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="computing_considerations.html">Computing Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="variant_phasing.html">Variant Phasing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_formats.html">File Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model_training.html">Megalodon Model Training</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Megalodon Modified Base Model Training</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modified-base-in-known-context">Modified Base in Known Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modified-base-model-training">Modified Base Model Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#megalodon-calibration">Megalodon Calibration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bootstrap-modified-base-annotation">Bootstrap Modified Base Annotation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="extras_aggregate.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">aggregate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_calibrate.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">calibrate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_merge.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">merge</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_modified_bases.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">modified_bases</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_phase_variants.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">phase_variants</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_per_read_text.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">per_read_text</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_validate.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">validate</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="extras_variants.html"><code class="docutils literal notranslate"><span class="pre">megalodon_extras</span> <span class="pre">variants</span></code></a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Megalodon</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Megalodon Modified Base Model Training</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/modbase_training.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="megalodon-modified-base-model-training">
+<h1>Megalodon Modified Base Model Training<a class="headerlink" href="#megalodon-modified-base-model-training" title="Permalink to this headline">¶</a></h1>
+<p>This page describes the process to generate modified base training data and train a basecalling model capable of also detecting modified bases.
+The options provided from Megalodon for modified base training data annotation are each linked to a specific sample type.
+If the provided options for do not perform sufficiently for a particular sample type, please open an issue on the <a class="reference external" href="https://github.com/nanoporetech/megalodon/issues">Megalodon issues page</a> with details for the sample type and intended training procedure.</p>
+<div class="section" id="modified-base-in-known-context">
+<h2>Modified Base in Known Context<a class="headerlink" href="#modified-base-in-known-context" title="Permalink to this headline">¶</a></h2>
+<p>Given a sample with all locations matching a particular sequence motif modified (e.g. bacterial methylation) the <code class="docutils literal notranslate"><span class="pre">--ref-mods-all-motifs</span></code> option can be specified.
+The <code class="docutils literal notranslate"><span class="pre">--ref-mods-all-motifs</span></code> argument takes <code class="docutils literal notranslate"><span class="pre">4</span></code> arguments.
+These values are:</p>
+<ol class="arabic simple">
+<li><p>Single letter code for the modified base</p></li>
+<li><p>Long name for the modified base</p></li>
+<li><p>Sequence motif (using <a class="reference external" href="https://genome.ucsc.edu/goldenPath/help/iupac.html">IUPAC ambiguity codes</a>)</p></li>
+<li><p>Relative position for the modified base within the sequence motif (0-based coordinate)</p></li>
+</ol>
+<p>The first two values are simply stored in the training data file.
+When used for model training, these values will be saved for annotation of output files where appropriate (e.g. by Megalodon or Guppy output files).</p>
+<p>Using this mode of modified base annotation, the specified basecalling model can be either a standard (canonical bases only) model or a modified base model.
+Thus this method of annotation can be specified for modifications with no previous modeling (as long as the current basecalls map to the provided reference).
+If the basecalling model specified is a modified base model, the single letter, long name, and corresponding canonical base attributes must be in agreement with the basecalling model.</p>
+<p>As an example a native E. coli K12 sample contains 5mC methylation at a single motifs, <code class="docutils literal notranslate"><span class="pre">CCWGG</span></code> at the second position, and 6mA methylation at several motifs, <code class="docutils literal notranslate"><span class="pre">GATC</span></code> at the second position, <code class="docutils literal notranslate"><span class="pre">AACNNNNNNGTGC</span></code> at the second position, and <code class="docutils literal notranslate"><span class="pre">GCACNNNNNNGTT</span></code> at the third position (<a class="reference external" href="https://www.neb.com/tools-and-resources/usage-guidelines/dam-and-dcm-methylases-of-e-coli">source</a>).
+In order to annotate all of these modifications in a training data set the following command would be run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">megalodon</span> <span class="n">ecoli_k12_fast5s</span><span class="o">/</span> \
+    <span class="o">--</span><span class="n">outputs</span> <span class="n">signal_mappings</span> \
+    <span class="o">--</span><span class="n">reference</span> <span class="n">ecoli_k12_reference</span><span class="o">.</span><span class="n">fa</span> \
+    <span class="o">--</span><span class="n">devices</span> <span class="mi">0</span> <span class="o">--</span><span class="n">processes</span> <span class="mi">40</span> \
+    <span class="o">--</span><span class="n">ref</span><span class="o">-</span><span class="n">mods</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">motifs</span> <span class="n">Z</span> <span class="mi">5</span><span class="n">mC</span> <span class="n">CCWGG</span> <span class="mi">1</span> \
+    <span class="o">--</span><span class="n">ref</span><span class="o">-</span><span class="n">mods</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">motifs</span> <span class="n">Y</span> <span class="mi">6</span><span class="n">mA</span> <span class="n">GATC</span> <span class="mi">1</span> \
+    <span class="o">--</span><span class="n">ref</span><span class="o">-</span><span class="n">mods</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">motifs</span> <span class="n">Y</span> <span class="mi">6</span><span class="n">mA</span> <span class="n">AACNNNNNNGTGC</span> <span class="mi">1</span> \
+    <span class="o">--</span><span class="n">ref</span><span class="o">-</span><span class="n">mods</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">motifs</span> <span class="n">Y</span> <span class="mi">6</span><span class="n">mA</span> <span class="n">GCACNNNNNNGTT</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>Note that the single letter codes, <code class="docutils literal notranslate"><span class="pre">Z</span></code> and <code class="docutils literal notranslate"><span class="pre">Y</span></code>, are arbitrary and can be set to any value desired by the user.
+These values will be stored in the trained model for outputs where appropriate.</p>
+</div>
+<div class="section" id="modified-base-model-training">
+<h2>Modified Base Model Training<a class="headerlink" href="#modified-base-model-training" title="Permalink to this headline">¶</a></h2>
+<p>Given the above modified base annotated mapped signal file, a new modified base model can be trained with <a class="reference external" href="https://github.com/nanoporetech/taiyaki">Taiyaki</a>.
+Below is an example command to train a modified base model from the data prepared above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">train_flipflop</span><span class="o">.</span><span class="n">py</span> <span class="o">./</span><span class="n">taiyaki</span><span class="o">/</span><span class="n">models</span><span class="o">/</span><span class="n">mLstm_cat_mod_flipflop</span><span class="o">.</span><span class="n">py</span> \
+    <span class="n">megalodon_results</span><span class="o">/</span><span class="n">signal_mappings</span><span class="o">.</span><span class="n">hdf5</span> <span class="o">--</span><span class="n">device</span> <span class="mi">0</span>
+<span class="c1"># dump model to json format for use by guppy</span>
+<span class="n">dump_json</span><span class="o">.</span><span class="n">py</span> <span class="n">training</span><span class="o">/</span><span class="n">model_final</span><span class="o">.</span><span class="n">checkpoint</span> \
+    <span class="o">--</span><span class="n">output</span> <span class="n">model_final</span><span class="o">.</span><span class="n">jsn</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="megalodon-calibration">
+<h2>Megalodon Calibration<a class="headerlink" href="#megalodon-calibration" title="Permalink to this headline">¶</a></h2>
+<p>In order to produce the most accurate modified base calls, Megalodon requires the computation of a calibration file.
+A ground truth sample containing known modified reference sites as well as known canonical base sites is required.
+Similarly to sequence variant calibration, a modified base calibration file is created by running <code class="docutils literal notranslate"><span class="pre">megalodon/scripts/generate_ground_truth_mod_llr_scores.py</span></code> followed by <code class="docutils literal notranslate"><span class="pre">megalodon/scripts/calibrate_mod_llr_scores.py</span></code>.</p>
+<p>The ground truth modified base positions can be provided in one of two ways.</p>
+<p>The first is by providing a single Megalodon results directory along with a CSV file containing ground truth modified and canonical sites.
+The <code class="docutils literal notranslate"><span class="pre">megalodon/scripts/create_mod_ground_truth.py</span></code> script is provided to generate a ground truth CSV file from a set of bedmethyl files.
+This first method is useful given a sample with variable methylation across the genome with alternative methylation evidence (e.g. human or plant methylation with bisulfite data).
+If sites provided are strand specific (no <code class="docutils literal notranslate"><span class="pre">--strand-offset</span></code> specified to the <code class="docutils literal notranslate"><span class="pre">create_mod_ground_truth.py</span></code> script) specify the <code class="docutils literal notranslate"><span class="pre">--strand-specific-sites</span></code> option.</p>
+<p>The second method to provide a modified base ground truth is via a control sample.
+Using this method all called modified base sites in the main Megalodon results directory are assumed to be modified and all called sites in the <code class="docutils literal notranslate"><span class="pre">--control-megalodon-results-dir</span></code> directory are assumed to be canonical bases.
+Called sites include only those specified via the <code class="docutils literal notranslate"><span class="pre">--mod-motif</span></code> argument to the main <code class="docutils literal notranslate"><span class="pre">megalodon</span></code> command.</p>
+<p>Calibration files are computed from the database files, so there is no need to output per-read text files for calibration.</p>
+<p>Using the generated ground truth statistics file, the <code class="docutils literal notranslate"><span class="pre">calibrate_mod_llr_scores.py</span></code> will then compute a calibration file for Megalodon use alongside this trained model.
+It is highly recommended that the <code class="docutils literal notranslate"><span class="pre">--out-pdf</span></code> option is specified and inspected to ensure valid model results/performance.</p>
+<p>Below an example of the calibration modified base plot is shown.
+The top panel of this figure shows the distribution of modified base scores for the ground truth modified and canonical base per-read calls.
+The distributions are modified slightly to force monotonicity to the peak of each distribution (original distributions are included in the plot).
+These distributions should show reasonable separation for a well trained model.</p>
+<p>The second panel shows the empirical (from ground truth data) and theoretical (from neural network scores).
+Note that these distributions often differ quite significantly.
+The theoretical/raw scores are what would be used given the <code class="docutils literal notranslate"><span class="pre">--disable-mod-calibration</span></code> option.
+This underscores the importance of the calibration step.</p>
+<p>The final panel shows the conversion from theoretical log likelihood ratio to empirical log likelihood ratio to be saved in the calibration file.
+Note that monotonic smoothing is applied to this function as well.</p>
+<p>The vertical bars on these plots, show the effect of common threshold choices on the ground truth data.</p>
+<p>TODO: Add calibration figure</p>
+</div>
+<div class="section" id="bootstrap-modified-base-annotation">
+<h2>Bootstrap Modified Base Annotation<a class="headerlink" href="#bootstrap-modified-base-annotation" title="Permalink to this headline">¶</a></h2>
+<p>Once a modified base model is trained and calibration file computed, further models can be trained by marking data with this model.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Great care should be taken when training a modified base basecalling model, especially with this method.
+The accuracy of reference modified base markup is strongly indicative of the final modified base detection performance for a trained model.</p>
+</div>
+<p>In order to annotate modified bases using a modified base model the following command would be run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">megalodon</span> <span class="n">native_human_fast5s</span><span class="o">/</span> \
+    <span class="o">--</span><span class="n">outputs</span> <span class="n">signal_mappings</span> \
+    <span class="o">--</span><span class="n">reference</span> <span class="n">human_reference</span><span class="o">.</span><span class="n">fa</span> \
+    <span class="o">--</span><span class="n">devices</span> <span class="mi">0</span> <span class="o">--</span><span class="n">processes</span> <span class="mi">40</span> \
+    <span class="o">--</span><span class="n">mod</span><span class="o">-</span><span class="n">motif</span> <span class="n">Z</span> <span class="n">CG</span> <span class="mi">0</span> \
+    <span class="o">--</span><span class="n">mod</span><span class="o">-</span><span class="n">motif</span> <span class="n">Y</span> <span class="n">A</span> <span class="mi">0</span> \
+    <span class="o">--</span><span class="n">ref</span><span class="o">-</span><span class="n">include</span><span class="o">-</span><span class="n">mods</span> \
+    <span class="o">--</span><span class="n">guppy</span><span class="o">-</span><span class="n">params</span> <span class="s2">&quot;-m model_final.jsn&quot;</span>
+</pre></div>
+</div>
+<p>In this example 5mC calls are limited to CpG sites while 6mA calls are made at any motif.
+Thus no 5mC sites will be marked in the output signal mapping file outside of the <code class="docutils literal notranslate"><span class="pre">CG</span></code> context.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--ref-mod-threshold</span></code> argument is provided to adjust the annotation based on modeling results.
+By default the threshold to annotate a base as modified is a log likelihood ratio of <code class="docutils literal notranslate"><span class="pre">0</span></code> (i.e. the modified base is more likely than the canonical base based on empirically calibrated statistics).
+In some samples this value may not be optimal.
+The <code class="docutils literal notranslate"><span class="pre">scripts/compute_mod_thresh_score.py</span></code> command is provided for assistance in determining a reasonable value for this parameter.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="extras_aggregate.html" class="btn btn-neutral float-right" title="megalodon_extras aggregate" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="model_training.html" class="btn btn-neutral float-left" title="Megalodon Model Training" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Oxford Nanopore Technologies
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
